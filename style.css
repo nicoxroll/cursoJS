@@ -44,7 +44,6 @@
 
 .product__description {
     margin-bottom: 20px;
-    /* overflow: scroll; */
 }
 
 .hide-description {
@@ -72,7 +71,6 @@
 
 .show-description:hover+.hide-description {
     display: flex;
-    transition: 3s;
 }
 
 .product__details {
