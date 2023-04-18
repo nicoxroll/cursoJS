@@ -30,10 +30,12 @@ window.onload = function() {
     .then(products => {
       
       products.forEach(product => {
+        //para no tener una descripcion muy larga
         let descrip = product.description;
-        if (descrip.length > 80) {
-          descrip = descrip.substring(0, 150) + "...";
+        if (descrip.length > 140) {
+          descrip = descrip.substring(0, 140) + "...";
         }
+        //crear mi html
         const div = document.createElement("div");
         div.classList.add("col-md-6", "col-lg-4", "new" , product.category.toLowerCase().substr(0, 3));
         div.innerHTML = `
@@ -44,6 +46,8 @@ window.onload = function() {
               <div class="text-holder">
                 <h6 class="title">${product.title}</h6>
                 <p class="subtitle">${descrip}</p>
+                <button class="btn btn-primary" data-id=${product.id}> ${product.price} $
+                </button>
               </div>
             </div> 
           </div>
@@ -55,7 +59,7 @@ window.onload = function() {
 
       // Agregar evento de filtrado
       
-    var t = $(".portfolio-container");
+    let t = $(".portfolio-container");
     t.isotope({
         filter: ".new",
         animationOptions: {
@@ -65,7 +69,7 @@ window.onload = function() {
         }
     }), $(".filters a").click(function() {
         $(".filters .active").removeClass("active"), $(this).addClass("active");
-        var i = $(this).attr("data-filter");
+        let i = $(this).attr("data-filter");
         return t.isotope({
             filter: i,
             animationOptions: {
