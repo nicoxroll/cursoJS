@@ -4,13 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <main class="products">
-    </main>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <header>
+      <div class="cart-container">
+        <div class="cart-container__number">3</div>
+        <img
+          src="./images/icon-cart.svg"
+          alt="icon cart"
+          class="cart-container__icon"
+        />
+      </div>
+
+      <div class="model-cart">
+        <p class="model-cart__text">Tu carrito está vacío</p>
+        <div class="model-cart__products"></div>
+      </div>
+    </header>
+    <div class="portfolio-container"></div>
     <script src="./main.js"></script>
   </body>
 </html>
