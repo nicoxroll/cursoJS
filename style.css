@@ -90,10 +90,7 @@ header,
 
 .model-cart__products {
     display: flex;
-    justify-content: center;
-    /* align-items: center; */
-    flex-wrap: wrap;
-    gap: 5px;
+    transition: 3s;
 }
 
 .new-product {
