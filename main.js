@@ -137,4 +137,110 @@ window.onload = function () {
         });
       };
     });
+
+  const form = document.querySelector("form");
+
+  const formularioValido = {
+    nombre: false,
+    email: false,
+    asunto: false,
+    mensaje: false,
+  };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validarNombre(e.target.name);
+    validarEmail(e.target.email);
+    validarAsunto(e.target.subject);
+    validarMensaje(e.target.message);
+    mensajePersonalizado(e.target._autoresponse, e.target.name);
+    validarFormulario();
+  });
+
+  const validarNombre = (input) => {
+    const regex = /^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/;
+    if (regex.test(input.value.trim())) {
+      formularioValido.nombre = true;
+      ocultarError(input, input.parentElement);
+    } else {
+      formularioValido.nombre = false;
+      mostrarError(
+        input,
+        input.parentElement,
+        "El campo Nombre debe ser un nombre valido"
+      );
+    }
+  };
+
+  const validarEmail = (input) => {
+    const regex = /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi;
+    if (regex.test(input.value.trim())) {
+      formularioValido.email = true;
+      ocultarError(input, input.parentElement);
+    } else {
+      formularioValido.email = false;
+      mostrarError(input, input.parentElement, "El campo Email es invalido");
+    }
+  };
+
+  const validarAsunto = (input) => {
+    if (input.value.trim().length > 5) {
+      formularioValido.asunto = true;
+      ocultarError(input, input.parentElement);
+    } else {
+      formularioValido.asunto = false;
+      mostrarError(
+        input,
+        input.parentElement,
+        "El campo asunto debe tener al menos 6 caracteres"
+      );
+    }
+  };
+
+  const validarMensaje = (input) => {
+    if (input.value.trim().length > 9) {
+      formularioValido.mensaje = true;
+      ocultarError(input, input.parentElement);
+    } else {
+      formularioValido.mensaje = false;
+      mostrarError(
+        input,
+        input.parentElement,
+        "El campo Mensaje debe tener al menos 10 caracteres"
+      );
+    }
+  };
+
+  const mensajePersonalizado = (mensaje, nombre) => {
+    mensaje.value = `Hola ${nombre.value}, gracias por contactarnos. En breve nos comunicaremos con usted.`;
+    console.log(mensaje);
+  };
+
+  const ocultarError = (input, elementoPadre) => {
+    if (elementoPadre.children.length === 2) {
+      input.style.border = "none";
+      elementoPadre.removeChild(elementoPadre.children[1]);
+    }
+  };
+
+  const mostrarError = (input, elementoPadre, textoError) => {
+    if (elementoPadre.children.length === 1) {
+      const error = document.createElement("P");
+      error.textContent = textoError;
+
+      input.style.border = "1px solid red";
+
+      elementoPadre.appendChild(error);
+    }
+  };
+
+  const validarFormulario = () => {
+    const values = Object.values(formularioValido);
+    const email = document.getElementById("email").value;
+    if (values.indexOf(false) === -1) {
+      const attribute = form.getAttribute("action");
+      form.setAttribute("action", `${attribute}${email}`);
+      form.submit();
+    }
+  };
 };
