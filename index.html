@@ -8,25 +8,24 @@
     <title>LeafCorp</title>
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+
     <!-- Bootstrap + styles -->
 	<link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="shortcut icon" href="assets/imgs/logo.svg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <!-- page Navigation -->
+    <!-- page Navigation  -->
     <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="assets/imgs/logo.svg" alt="">
-            </a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+           
+          <a class="navbar-brand" href="#">
+            <img  src="assets/imgs/logo.svg" alt="">
+            
+          </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">                     
-                    <li class="nav-item">
-                        <a class="nav-link" href="#service">Nuestros Servicios</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">Empresa</a>
                     </li>
@@ -44,7 +43,7 @@
         </div>
     </nav>
     <!-- End Of Second Navigation -->
-
+    
     <!-- Page Header -->
     <header class="header">
         <div class="overlay">
@@ -60,44 +59,6 @@
     </header>
     <!-- End Of Page Header -->
 
-    <!-- Service Section -->
-    <section  id="service" class="section pt-0">
-        <div class="container">
-            <h6 class="section-title text-center">Nuestros Servicios</h6>
-            <h6 class="section-subtitle text-center mb-5 pb-3">  </h6>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                            <small class="text-primary font-weight-bold">01</small>
-                            <h5 class="card-title mt-3"> Compra <h5>
-                            <p class="mb-0">Selecciona del catalogo de productos.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                            <small class="text-primary font-weight-bold">02</small>
-                            <h5 class="card-title mt-3">Genera Reporte<h5>
-                            <p class="mb-0">Ve tu compra en un resumen y en un PDF.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 mb-md-0">
-                        <div class="card-body">
-                            <small class="text-primary font-weight-bold">03</small>
-                            <h5 class="card-title mt-3">Asistencia<h5>
-                            <p class="mb-0">Te ayudamos a realizar tu compra .</p>
-                        </div>
-                    </div>
-                </div>              
-            </div>
-        </div>
-    </section>
-    <!-- End OF Service Section -->
 
     <!-- About Section -->
     <section class="section" id="about">
@@ -129,6 +90,7 @@
     </section>
     <!-- End OF About Section -->
 
+    <div class="hidden" id="cart-items"></div>
     <!-- Portfolio Section -->
     <section id="portfolio" class="section portfolio-section">
         <div class="container">
@@ -258,6 +220,7 @@
                     </form>
                 </div>
             </div>
+            
             <!-- Page Footer -->
             <footer class="mt-5 py-4 border-top border-secondary">
                 <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, Lead Corp <a href="https://github.com" target="_blank"> Leaf Corp.</a>  All rights reserved </p>     
@@ -265,11 +228,35 @@
             <!-- End of Page Footer -->  
         </div>
     </section>
+
+    <div class="cart-container">
+        
+    </div>
+
+    <div class="modal-carrito">
+        <div class="modal-content-carrito">
+          <div class="modal-header-carrito overlay">
+            <h2>Carrito de compras</h2>
+            <button id="close-btn">&times;</button>
+          </div>
+          <hr>
+            <div class="modal-carrito__products" id="id_modal"></div>
+            
+            
+            
+        </div>
+    </div>
 	
+
+
+	    <!-- Librería jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Librería Toastr -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
 
     <!-- bootstrap 3 affix -->
 	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
@@ -279,6 +266,7 @@
 
     <!-- js -->
     <script src="assets/js/product.js"></script>
+
 
 
 
