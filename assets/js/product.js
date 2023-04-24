@@ -1,6 +1,8 @@
 
 // smooth scroll
 $(document).ready(function(){
+  
+
   $(".navbar .nav-link").on('click', function(event) {
 
       if (this.hash !== "") {
@@ -16,6 +18,7 @@ $(document).ready(function(){
           });
       } 
   });
+ 
 
 
 })
@@ -30,7 +33,6 @@ window.onload = function() {
 mostrarIcono(0)
 const portfolioContainer = document.querySelector(".portfolio-container");
 const itemsContainer = portfolioContainer;
-
 $.ajax({
   //la url que nos interesa
   url: "https://fakestoreapi.com/products",
@@ -93,6 +95,9 @@ $.ajax({
   },
   error: function(jqXHR, textStatus, errorThrown) {
     console.log(textStatus, errorThrown);
+    portfolioContainer.innerHTML=
+    `
+    <h6 class="section-title text-center"> La API fakeproducts esta caida u_u </h6>`
   }
 });
 }
@@ -122,16 +127,6 @@ if (modelCart.style.display == "none") {
 
 
 
-function printContainerContent(containerId) {
-const container = document.getElementById(containerId);
-const content = container.innerHTML;
-const printWindow = window.open("", "PrintWindow", "height=400,width=800");
-printWindow.document.write(content);
-printWindow.document.close();
-printWindow.focus();
-printWindow.print();
-printWindow.close();
-}
 
 function mostrarIcono(cant) {
 const cartContainer = document.querySelector('.cart-container');
@@ -251,6 +246,7 @@ let totalHTML = `
   <div class="col-md-4">
     <button class="btn btn-primary" id="generar-resumen" onclick="generarPDF()">Generar resumen</button>
   </div>
+
 </div>
 `;
 if(absTotal>0){
@@ -381,3 +377,60 @@ doc.autoTable({
 // Save file
 doc.save('resumen_compras.pdf');
 }
+
+const validationRules = {
+  name: {
+    presence: true,
+    length: { minimum: 3 }
+  },
+  email: {
+    presence: true,
+    email: true
+  },
+  subject: {
+    presence: true,
+    length: { minimum: 3, maximum: 20 }
+  },
+  message: {
+    presence: true,
+    length: { minimum: 3, maximum: 400 }
+  }
+};
+
+const form = document.querySelector('#contact-form');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  validateForm();
+});
+
+toastr.options = {
+  positionClass: 'toast-bottom-right',
+  preventDuplicates: true,
+  closeButton: true
+};
+
+function validateForm() {
+  const formData = {
+    name: form.querySelector('[name="name"]').value,
+    email: form.querySelector('[name="email"]').value,
+    subject: form.querySelector('[name="subject"]').value,
+    message: form.querySelector('[name="message"]').value
+  };
+
+  const validationErrors = validate(formData, validationRules);
+
+  if (validationErrors) {
+    Object.keys(validationErrors).forEach(function (field) {
+      const errorMessages = validationErrors[field].join('<br>');
+      toastr.error(errorMessages, `Error de validación en ${field}`);
+    });
+  } else {
+    Swal.fire({
+      icon: 'success',
+      title: 'Exito',
+      text: 'El mensaje fue enviado correctamente',
+    });
+  }
+}
+

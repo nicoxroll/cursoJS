@@ -10869,9 +10869,7 @@ a.text-dark:hover, a.text-dark:focus {
 .visible {
   visibility: visible !important;
 }
-.hidden {
-  display: none;
-}
+
 
 .invisible {
   visibility: hidden !important;
@@ -12012,3 +12010,26 @@ textarea.form-control {
   max-width: 100px;
 }
 
+
+
+/* Clase para animar la transición entre secciones */
+.transition {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Clase para ocultar las secciones que no estén activas */
+.hidden {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+/* Clase para mostrar la sección activa */
+.active {
+  position: relative;
+  left: 0;
+  opacity: 1;
+}
