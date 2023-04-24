@@ -223,8 +223,8 @@ let carritoHTML = carrito.map(function(item) {
             <button class="btn-cantidad btn btn-sm btn-outline-secondary" data-id="${item.id}" data-action="disminuir">-</button>
             <span class="producto-carrito__cantidad-num">${item.cantidad}</span>
             <button class="btn-cantidad btn btn-sm btn-outline-secondary" data-id="${item.id}" data-action="aumentar">+</button>
-            <button class="producto-carrito__eliminar btn btn-sm btn-warning btn-hover-warning p-2" data-id="${item.id}">
-              <i class="ti-trash"></i>
+            <button class="producto-carrito__eliminar btn btn-sm btn-warning btn-hover-warning p-2" id="close-btn" data-id="${item.id}"> 
+            X
             </button>
           </div>
         </div>
@@ -283,7 +283,7 @@ if (target.classList.contains('btn-cantidad')) {
   }
   actualizarModalCarrito();
   mostrarIcono(carrito.length)
-} else if (target.classList.contains('producto-carrito__eliminar')) {
+} else if (target.classList.contains('producto-carrito__eliminar') ) {
   let id = target.getAttribute('data-id');
   let item = carrito.find(function(element) {
     mostrarIcono(carrito.length)
