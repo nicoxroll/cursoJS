@@ -18,9 +18,6 @@ $(document).ready(function(){
           });
       } 
   });
- 
-
-
 })
 
 
@@ -63,7 +60,6 @@ $.ajax({
           </div> 
         </div>
       `;
-      
       itemsContainer.appendChild(div);
 
     });
@@ -406,7 +402,7 @@ form.addEventListener('submit', function(event) {
 
 toastr.options = {
   positionClass: 'toast-bottom-right',
-  preventDuplicates: true,
+  preventDuplicates: false,
   closeButton: true
 };
 
